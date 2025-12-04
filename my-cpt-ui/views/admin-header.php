@@ -28,4 +28,28 @@ $base_url     = admin_url( 'admin.php' );
             <span><?php esc_html_e( 'Please fix the highlighted fields.', 'my-cpt-ui' ); ?></span>
         </div>
     <?php endif; ?>
+
+    <div
+        id="my-cpt-ui-confirm"
+        class="my-cpt-ui__modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="my-cpt-ui-confirm__title"
+        aria-describedby="my-cpt-ui-confirm__message"
+        hidden
+    >
+        <div class="my-cpt-ui__modal__overlay" tabindex="-1" data-dismiss="true"></div>
+        <div class="my-cpt-ui__modal__dialog" role="document">
+            <div class="my-cpt-ui__modal__header">
+                <h2 id="my-cpt-ui-confirm__title"><?php esc_html_e( 'Confirm deletion', 'my-cpt-ui' ); ?></h2>
+            </div>
+            <div class="my-cpt-ui__modal__body">
+                <p id="my-cpt-ui-confirm__message" class="my-cpt-ui__muted"></p>
+            </div>
+            <div class="my-cpt-ui__modal__footer">
+                <button type="button" class="button" id="my-cpt-ui-confirm__cancel"><?php esc_html_e( 'Cancel', 'my-cpt-ui' ); ?></button>
+                <button type="button" class="button button-primary" id="my-cpt-ui-confirm__accept"><?php esc_html_e( 'Delete item', 'my-cpt-ui' ); ?></button>
+            </div>
+        </div>
+    </div>
 </div>
