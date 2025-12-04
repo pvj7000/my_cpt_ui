@@ -101,11 +101,77 @@
         }
     });
 
+    const confirmModal = document.getElementById('my-cpt-ui-confirm');
+    const confirmMessage = document.getElementById('my-cpt-ui-confirm__message');
+    const confirmAccept = document.getElementById('my-cpt-ui-confirm__accept');
+    const confirmCancel = document.getElementById('my-cpt-ui-confirm__cancel');
+    const confirmOverlay = document.querySelector('#my-cpt-ui-confirm .my-cpt-ui__modal__overlay');
+    let pendingForm = null;
+    let lastFocusedElement = null;
+
+    function closeConfirmDialog() {
+        if (!confirmModal) return;
+        confirmModal.classList.remove('is-visible');
+        confirmModal.setAttribute('aria-hidden', 'true');
+        confirmModal.hidden = true;
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+        }
+        pendingForm = null;
+    }
+
+    function openConfirmDialog(message, form) {
+        if (!confirmModal || !confirmMessage || !confirmAccept) {
+            return window.confirm(message);
+        }
+
+        lastFocusedElement = document.activeElement;
+        confirmMessage.textContent = message;
+        confirmModal.hidden = false;
+        confirmModal.classList.add('is-visible');
+        confirmModal.setAttribute('aria-hidden', 'false');
+        pendingForm = form;
+        confirmAccept.focus();
+        return null;
+    }
+
+    if (confirmCancel) {
+        confirmCancel.addEventListener('click', function() {
+            closeConfirmDialog();
+        });
+    }
+
+    if (confirmAccept) {
+        confirmAccept.addEventListener('click', function() {
+            if (pendingForm) {
+                pendingForm.submit();
+            }
+            closeConfirmDialog();
+        });
+    }
+
+    if (confirmOverlay) {
+        confirmOverlay.addEventListener('click', function() {
+            closeConfirmDialog();
+        });
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeConfirmDialog();
+        }
+    });
+
     document.addEventListener('submit', function(event) {
         const target = event.target;
         if (target.classList && target.classList.contains('my-cpt-ui__delete-form')) {
             const message = target.dataset.confirmMessage || 'Are you sure?';
-            if (!window.confirm(message)) {
+            const shouldSubmit = openConfirmDialog(message, target);
+            if (shouldSubmit === false) {
+                event.preventDefault();
+                return;
+            }
+            if (shouldSubmit === null) {
                 event.preventDefault();
             }
         }

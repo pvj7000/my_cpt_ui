@@ -198,6 +198,49 @@
     gap: 10px;
 }
 
+.my-cpt-ui__modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+}
+
+.my-cpt-ui__modal.is-visible {
+    display: flex;
+}
+
+.my-cpt-ui__modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+}
+
+.my-cpt-ui__modal__dialog {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+    width: min(520px, 90vw);
+    z-index: 2;
+}
+
+.my-cpt-ui__modal__header h2 {
+    margin: 0 0 6px;
+}
+
+.my-cpt-ui__modal__body {
+    margin-bottom: 16px;
+}
+
+.my-cpt-ui__modal__footer {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
 .my-cpt-ui__table-actions {
     display: inline-flex;
     gap: 8px;
