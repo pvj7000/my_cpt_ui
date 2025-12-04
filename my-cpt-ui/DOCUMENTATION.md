@@ -99,7 +99,3 @@ Retrieve field data in your theme with standard WordPress functions:
 - **“The entity being edited does not have a loaded config”**: Ensure **Expose to REST** is enabled for the affected post type so the block editor can load its REST schema.
 - **Fields not showing**: Confirm the field group is attached to the post type and that you saved the configuration.
 - **Taxonomy missing**: Make sure it is attached to at least one post type and the slug is unique.
-
-## Need More Help?
-
-Open an issue with the steps to reproduce the problem, the WordPress version, and any relevant screenshots. Keeping detailed notes helps resolve issues quickly.
