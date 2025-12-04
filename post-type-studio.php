@@ -3,7 +3,8 @@
  * Plugin Name: Post Type Studio
  * Description: Minimal UI for managing custom post types, taxonomies, and custom fields.
  * Version: 1.0.0
- * Author: CentralDev
+ * Author: Philip Vincent Jancsy
+ * Author URI: philipjancsy.com
  * Text Domain: post-type-studio
  */
 
